@@ -7,8 +7,8 @@ export function usePassport({
   scope_id,
   endpoint = "https://tiramisu.0xpass.io",
 }) {
-  const signerRef = useRef<WebauthnSigner | null>(null);
-  const passportRef = useRef<Passport | null>(null);
+  const signerRef = {};
+  const passportRef = {};
 
   if (!signerRef.current) {
     signerRef.current = new WebauthnSigner({

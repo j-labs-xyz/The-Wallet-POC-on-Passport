@@ -16,7 +16,7 @@ export const Page = () => {
   const [message, setMessage] = useState("");
   const [messageSignature, setMessageSignature] = useState("");
   const [authenticatedHeader, setAuthenticatedHeader] = useState({});
-  const [address, setAddress] = useState<string>(any);
+  const [address, setAddress] = useState("");
 
   const alchemyUrl = process.env.NEXT_PUBLIC_ALCHEMY_URL;
   const fallbackProvider = http(alchemyUrl);

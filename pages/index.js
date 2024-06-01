@@ -6,7 +6,7 @@ import styles from "../ui/styles/Home.module.css"
 
 import { GreetingSection } from "../ui/components/GreetingSection"
 import { ImageSection } from "../ui/components/ImageSection"
-//import { Page } from "../ui/0xPass/page"
+import { Page } from "../ui/0xPass/page"
 
 function HomePage() {
   return (
@@ -23,7 +23,7 @@ function HomePage() {
 
         <GreetingSection />
         <ImageSection />
-        {/* <Page /> */}
+        <Page />
       </main>
     </div>
   )
