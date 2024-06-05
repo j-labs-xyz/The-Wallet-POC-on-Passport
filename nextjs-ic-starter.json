@@ -1,0 +1,8 @@
+{
+    "rp": {
+      "id": "localhost",
+      "origin": "http://localhost:4943/",
+      "name": "v1-nextjs-ic-starter.0xpass.mpc.j-labs.xyz"
+    },
+    "policies": []
+  }

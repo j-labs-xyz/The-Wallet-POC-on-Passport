@@ -28,7 +28,8 @@ export const Page = () => {
 
   const { passport } = usePassport({
     ENCLAVE_PUBLIC_KEY: TESTNET_RSA_PUBLIC_KEY,
-    scope_id: "07907e39-63c6-4b0b-bca8-377d26445172",
+    // scope_id: "07907e39-63c6-4b0b-bca8-377d26445172", // working
+    scope_id: "43ca2cb8-886e-417f-9e31-0c0c5b3acd1e", // not working
   });
 
   async function register() {
