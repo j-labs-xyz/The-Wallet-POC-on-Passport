@@ -46,8 +46,7 @@ export const Page = () => {
       if (res.result.account_id) {
         setRegistering(false);
         setAuthenticating(true);
-        // await authenticate();
-        await theWalletAuthenticaionService.authenticate(userInput);
+        await authenticate();
         setAuthenticating(false);
       }
     } catch (error) {
