@@ -3,8 +3,6 @@ import { useState } from "react";
 import { createPassportClient } from "@0xpass/passport-viem";
 import { http } from "viem";
 import { mainnet } from "viem/chains";
-import { usePassport } from "./hooks/usePassport";
-import { TESTNET_RSA_PUBLIC_KEY } from "@0xpass/passport";
 
 import theWalletAuthenticaionService from "./AuthenticationService";
 
@@ -28,18 +26,9 @@ export const Page = () => {
     userDisplayName: username,
   };
 
-  const { passport } = usePassport({
-    ENCLAVE_PUBLIC_KEY: TESTNET_RSA_PUBLIC_KEY,
-    // scope_id: "07907e39-63c6-4b0b-bca8-377d26445172", // original
-    // scope_id: "43ca2cb8-886e-417f-9e31-0c0c5b3acd1e", // localhost:4943
-    scope_id: "4b8e66a2-bf1f-4d9d-8df8-7f7aa7502370", // localhost:3000
-  });
-
   async function register() {
     setRegistering(true);
     try {
-      await passport.setupEncryption();
-      // const res = await passport.register(userInput);
       const res = await theWalletAuthenticaionService.register(userInput);
       console.log(res);
 
@@ -60,7 +49,6 @@ export const Page = () => {
   async function authenticate() {
     setAuthenticating(true);
     try {
-      await passport.setupEncryption();
       const [authenticatedHeader, address] = await theWalletAuthenticaionService.authenticate(
         userInput
       );
@@ -107,7 +95,7 @@ export const Page = () => {
       </div>
       <div className="text-center">
         <h1 className="text-3xl font-bold underline">
-          Passport Protocol Quickstart
+          Passport Protocol Quickstart v0.22 0xPass
         </h1>
         <p className="mt-2 text-lg">
           This is a quickstart guide for the Passport Protocol SDK.
