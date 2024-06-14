@@ -1,4 +1,9 @@
 import { usePassport } from "./hooks/usePassport";
+import { createPassportClient } from "@0xpass/passport-viem";
+
+import { http } from "viem";
+import { mainnet } from "viem/chains";
+
 import { TESTNET_RSA_PUBLIC_KEY } from "@0xpass/passport";
 
 class AuthenticaionService {
@@ -37,6 +42,22 @@ class AuthenticaionService {
         throw error;
       }
     };
+
+    async sign(authenticatedHeader, message) {
+      const client = this.createWalletClient(authenticatedHeader);
+      const [address] = await client.getAddresses();
+      const response = await client.signMessage({
+        account: address,
+        message,
+      });
+      return response;
+    }
+
+    createWalletClient(authenticatedHeader) {
+      const alchemyUrl = process.env.NEXT_PUBLIC_ALCHEMY_URL;
+      const fallbackProvider = http(alchemyUrl);
+      return createPassportClient(authenticatedHeader, fallbackProvider, mainnet);
+    }
   }
   
   const theWalletAuthenticaionService = new AuthenticaionService();

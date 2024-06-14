@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
-import { createPassportClient } from "@0xpass/passport-viem";
 import { http } from "viem";
-import { mainnet } from "viem/chains";
 
 import theWalletAuthenticaionService from "./AuthenticationService";
 
@@ -63,19 +61,11 @@ export const Page = () => {
     }
   }
 
-  function createWalletClient() {
-    return createPassportClient(authenticatedHeader, fallbackProvider, mainnet);
-  }
-
   async function signMessage(message) {
     try {
       setSignMessageLoading(true);
-      const client = createWalletClient();
-      const [address] = await client.getAddresses();
-      const response = await client.signMessage({
-        account: address,
-        message,
-      });
+
+      const response = await theWalletAuthenticaionService.sign(authenticatedHeader, message);
 
       setMessageSignature(response);
       setSignMessageLoading(false);
@@ -95,7 +85,7 @@ export const Page = () => {
       </div>
       <div className="text-center">
         <h1 className="text-3xl font-bold underline">
-          Passport Protocol Quickstart v0.22 0xPass
+          Passport Protocol Quickstart v0.23 0xPass
         </h1>
         <p className="mt-2 text-lg">
           This is a quickstart guide for the Passport Protocol SDK.
