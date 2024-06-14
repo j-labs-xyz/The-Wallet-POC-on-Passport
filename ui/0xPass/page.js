@@ -16,9 +16,6 @@ export const Page = () => {
   const [authenticatedHeader, setAuthenticatedHeader] = useState({});
   const [address, setAddress] = useState("");
 
-  const alchemyUrl = process.env.NEXT_PUBLIC_ALCHEMY_URL;
-  const fallbackProvider = http(alchemyUrl);
-
   const userInput = {
     username: username,
     userDisplayName: username,

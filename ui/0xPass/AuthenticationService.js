@@ -56,6 +56,7 @@ class AuthenticaionService {
     createWalletClient(authenticatedHeader) {
       const alchemyUrl = process.env.NEXT_PUBLIC_ALCHEMY_URL;
       const fallbackProvider = http(alchemyUrl);
+
       return createPassportClient(authenticatedHeader, fallbackProvider, mainnet);
     }
   }
